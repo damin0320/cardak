@@ -7,7 +7,6 @@ from django.http import JsonResponse
 from users.models import Users
 from my_settings import SECRET_KEY, HASHING_ALGORITHM
 
-
 def auth_check(func):
     def wrapper(self, request):
         try:
