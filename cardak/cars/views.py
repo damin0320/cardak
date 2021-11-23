@@ -47,3 +47,15 @@ class CarRegistryView(View):
             return JsonResponse({'message': 'DATA_ERROR'}, status=400)
         except TypeError:
             return JsonResponse({'message': 'TYPE_ERROR'}, status=400)
+
+    @auth_check
+    def get(self, request):
+        user_id = request.user.id
+        trim_info = Car.objects.get(id = user_id)
+        trim_id = trim_info.trim_id
+
+        result = {
+            'trim_id' : trim_id
+        }
+
+        return JsonResponse(result, status=200)
